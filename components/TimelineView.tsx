@@ -19,6 +19,7 @@ const PLATFORM_LABELS: Record<Platform, string> = {
   codechef: "CodeChef",
   atcoder: "AtCoder",
   gfg: "GeeksForGeeks",
+  hackerrank: "HackerRank",
 };
 
 const PLATFORM_COLORS: Record<Platform, string> = {
@@ -27,6 +28,7 @@ const PLATFORM_COLORS: Record<Platform, string> = {
   codechef: "bg-orange-600/90 border-orange-500",
   atcoder: "bg-gray-600/90 border-gray-500",
   gfg: "bg-green-600/90 border-green-500",
+  hackerrank: "bg-emerald-600/90 border-emerald-500",
 };
 
 export default function TimelineView({ data }: Props) {
@@ -60,25 +62,25 @@ export default function TimelineView({ data }: Props) {
   };
 
   return (
-    <div className="w-full rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-sm overflow-hidden flex flex-col">
+  <div className="w-full rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-sm overflow-hidden flex flex-col">
       {/* Header Controls */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
-           <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-200">Competition Timeline</h3>
-           <div className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+   <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-zinc-800">
+     <h3 className="text-lg font-semibold text-gray-900 dark:text-zinc-200">Competition Timeline</h3>
+     <div className="text-sm text-gray-500 dark:text-zinc-400 font-medium">
              {format(timelineStart, "MMM d")} - {format(days[days.length-1], "MMM d, yyyy")}
            </div>
       </div>
 
-      <div className="flex flex-1 overflow-hidden min-h-[400px]">
+      <div className="flex flex-1 overflow-hidden min-h-100">
         {/* Left Column: Platform Names (Sticky) */}
-        <div className="w-32 md:w-48 flex-shrink-0 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 z-20">
+     <div className="w-32 md:w-48 shrink-0 border-r border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 z-20">
              {/* Header Spacer matching dates height */}
-             <div className="h-14 border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900"></div>
+       <div className="h-14 border-b border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900"></div>
              
              {/* Platform Rows */}
              <div className="flex flex-col">
                {Object.keys(PLATFORM_LABELS).map((key) => (
-                 <div key={key} className="h-16 flex items-center px-4 border-b border-gray-200 dark:border-gray-800 dark:text-gray-300 font-medium text-sm">
+                 <div key={key} className="h-16 flex items-center px-4 border-b border-gray-200 dark:border-zinc-800 dark:text-zinc-300 font-medium text-sm">
                    {PLATFORM_LABELS[key as Platform]}
                  </div>
                ))}
@@ -86,17 +88,17 @@ export default function TimelineView({ data }: Props) {
         </div>
 
         {/* Right Column: Timeline Grid (Scrollable) */}
-        <div className="flex-1 overflow-x-auto relative bg-white dark:bg-gray-950">
-           <div className="min-w-[1000px] h-full relative">
+  <div className="flex-1 overflow-x-auto relative bg-white dark:bg-zinc-950">
+           <div className="min-w-250 h-full relative">
               
               {/* Header: Days */}
-              <div className="h-14 grid grid-cols-14 border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-gray-50 dark:bg-gray-900 z-10">
+              <div className="h-14 grid grid-cols-14 border-b border-gray-200 dark:border-zinc-800 sticky top-0 bg-gray-50 dark:bg-zinc-900 z-10">
                  {days.map((day, i) => {
                    const isToday = isSameDay(day, new Date());
                    return (
-                     <div key={i} className={`flex flex-col items-center justify-center border-r border-gray-200 dark:border-gray-800 last:border-0 ${isToday ? 'bg-blue-50/50 dark:bg-blue-900/20' : ''}`}>
-                       <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{format(day, "EEE")}</span>
-                       <span className={`text-sm font-bold ${isToday ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                     <div key={i} className={`flex flex-col items-center justify-center border-r border-gray-200 dark:border-zinc-800 last:border-0 ${isToday ? 'bg-blue-50/50 dark:bg-blue-950/20' : ''}`}>
+                       <span className="text-[10px] font-semibold text-gray-500 dark:text-zinc-400 uppercase tracking-wider">{format(day, "EEE")}</span>
+                       <span className={`text-sm font-bold ${isToday ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-zinc-300'}`}>
                          {format(day, "d")}
                        </span>
                      </div>
@@ -109,7 +111,7 @@ export default function TimelineView({ data }: Props) {
                 {days.map((day, i) => {
                     const isToday = isSameDay(day, new Date());
                     return (
-                        <div key={i} className={`border-r border-gray-100 dark:border-gray-800/50 h-full ${isToday ? 'bg-blue-50/10 dark:bg-blue-900/5' : ''}`}></div>
+                        <div key={i} className={`border-r border-gray-100 dark:border-zinc-800/50 h-full ${isToday ? 'bg-blue-50/10 dark:bg-blue-950/10' : ''}`}></div>
                     );
                 })}
                 {/* Current Time Vertical Line */}
@@ -128,7 +130,7 @@ export default function TimelineView({ data }: Props) {
                       const platformContests = data.filter(c => c.platform === p);
 
                       return (
-                          <div key={p} className="h-16 relative border-b border-gray-200 dark:border-gray-800 group hover:bg-gray-50 dark:hover:bg-gray-900/20 transition-colors">
+                          <div key={p} className="h-16 relative border-b border-gray-200 dark:border-zinc-800 group hover:bg-gray-50 dark:hover:bg-zinc-900/30 transition-colors">
                               {platformContests.map(contest => {
                                   const style = getPositionStyle(contest.startTime, contest.duration);
                                   if (!style) return null;

@@ -6,12 +6,14 @@ interface ContestStore {
   filteredContests: Contest[];
   filters: FilterState;
   viewMode: ViewMode;
+  searchTargetContestId: string | null;
   isLoading: boolean;
   error: string | null;
 
   setContests: (contests: Contest[]) => void;
   setFilters: (filters: Partial<FilterState>) => void;
   setViewMode: (mode: ViewMode) => void;
+  setSearchTargetContestId: (contestId: string | null) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   applyFilters: () => void;
@@ -27,6 +29,7 @@ export const useContestStore = create<ContestStore>((set, get) => ({
     startDate: null,
   },
   viewMode: "table",
+  searchTargetContestId: null,
   isLoading: false,
   error: null,
 
@@ -43,6 +46,7 @@ export const useContestStore = create<ContestStore>((set, get) => ({
   },
 
   setViewMode: (mode) => set({ viewMode: mode }),
+  setSearchTargetContestId: (contestId) => set({ searchTargetContestId: contestId }),
   setLoading: (loading) => set({ isLoading: loading }),
   setError: (error) => set({ error }),
 

@@ -49,6 +49,13 @@ export default function PlatformIcon({ platform, className = "w-6 h-6" }: Props)
            <text x="12" y="12" fontSize="10" textAnchor="middle" dy=".35em" fill="white" fontWeight="bold" fontFamily="monospace">G</text>
         </svg>
       );
+    case "hackerrank":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 3.5h8l4.5 8-4.5 8H8l-4.5-8 4.5-8z" fill="#00EA64"/>
+          <path d="M9.5 8h2v2.5h1V8h2v8h-2v-3h-1v3h-2V8z" fill="#0B0F19"/>
+        </svg>
+      );
     default:
       return <div className={`border rounded-full ${className} bg-gray-200`} />;
   }

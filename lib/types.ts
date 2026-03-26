@@ -1,6 +1,6 @@
 export interface Contest {
   id: string;
-  platform: "codeforces" | "leetcode" | "codechef" | "atcoder" | "gfg";
+  platform: "codeforces" | "leetcode" | "codechef" | "atcoder" | "gfg" | "hackerrank";
   title: string;
   startTime: string; // ISO string
   endTime: string; // ISO string
