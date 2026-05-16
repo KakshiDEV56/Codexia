@@ -34,7 +34,7 @@ function ContestsPageContent() {
           Explore Competitive <span className="text-blue-600">Programming Contests</span>
         </h1>
         <p className="text-base text-gray-500 sm:text-lg dark:text-zinc-400 max-w-2xl">
-          Your unified command center for tracking, comparing, and entering the world's most prestigious coding challenges.
+          Your unified command center for tracking, comparing, and entering the world&apos;s most prestigious coding challenges.
         </p>
       </div>
 

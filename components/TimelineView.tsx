@@ -44,7 +44,7 @@ export default function TimelineView({ data }: Props) {
     const durationMinutes = durationHours * 60;
     
     // Calculate percentages
-    let left = (diffMinutes / totalDurationMinutes) * 100;
+    const left = (diffMinutes / totalDurationMinutes) * 100;
     let width = (durationMinutes / totalDurationMinutes) * 100;
 
     // Boundary checks

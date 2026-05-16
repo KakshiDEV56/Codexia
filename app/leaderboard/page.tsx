@@ -143,7 +143,7 @@ export default function LeaderboardPage() {
             ) : (
                <tr>
                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
-                   No handles found matching "{search}"
+                   No handles found matching &quot;{search}&quot;
                  </td>
                </tr>
             )}

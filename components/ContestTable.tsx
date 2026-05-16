@@ -1,5 +1,5 @@
-import { Contest, Platform } from "../lib/types";
-import { ExternalLink, Calendar, Link as LinkIcon, Clock, ChevronRight } from "lucide-react";
+import { Contest } from "../lib/types";
+import { ExternalLink, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import PlatformIcon from "./PlatformIcon";
 import { useEffect, useRef, useState } from "react";
@@ -25,12 +25,20 @@ export default function ContestTable({ data }: Props) {
     if (!target) return;
 
     target.scrollIntoView({ behavior: "smooth", block: "center" });
-    setHighlightedContestId(searchTargetContestId);
-    setSearchTargetContestId(null);
+    
+    // Use a single state update via setTimeout to avoid cascading renders
+    const timeoutId = setTimeout(() => {
+      setHighlightedContestId(searchTargetContestId);
+      setSearchTargetContestId(null);
+    }, 0);
 
-    const timeoutId = setTimeout(() => setHighlightedContestId(null), 2200);
-    return () => clearTimeout(timeoutId);
-  }, [searchTargetContestId, setSearchTargetContestId, data]);
+    const resetTimeoutId = setTimeout(() => setHighlightedContestId(null), 2200);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(resetTimeoutId);
+    };
+  }, [searchTargetContestId, setSearchTargetContestId]);
 
   if (data.length === 0) {
     return (
