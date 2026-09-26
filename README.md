@@ -12,3 +12,7 @@ With Codexia, users can:
 - Access contest details instantly with direct links
 
 Whether you're preparing for interviews, improving your problem-solving skills, or actively competing, Codexia helps you never miss an important contest again.
+
+## Backend Development
+
+Install Air once with `go install github.com/air-verse/air@latest`, then run the backend watcher from the workspace root with `npm run dev:backend`.

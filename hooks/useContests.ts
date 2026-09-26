@@ -46,9 +46,15 @@ export function useContests() {
     setViewMode,
     refresh: async () => {
         setLoading(true);
-        const data = await fetchContests();
-        setContests(data);
-        setLoading(false);
+        setError(null);
+        try {
+          const data = await fetchContests();
+          setContests(data);
+        } catch {
+          setError("Failed to fetch contests");
+        } finally {
+          setLoading(false);
+        }
     }
   };
 }

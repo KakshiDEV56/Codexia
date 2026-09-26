@@ -7,7 +7,7 @@ CREATE TABLE contests (
 
     start_time TIMESTAMPTZ NOT NULL,
     end_time TIMESTAMPTZ NOT NULL,
-    duration INT NOT NULL,
+    duration INT NOT NULL, -- scheduled length in seconds
 
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),

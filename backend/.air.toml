@@ -1,17 +1,17 @@
 #:schema https://json.schemastore.org/any.json
 
 env_files = []
-root = "."
+root = "backend"
 testdata_dir = "testdata"
 tmp_dir = "tmp"
 
 [build]
   args_bin = []
   bin = "./tmp/main"
-  cmd ="go build -o ./tmp/main ./cmd/server/main.go"
+  cmd = "cd backend && go build -o ./tmp/main ./cmd/server/main.go"
   delay = 1000
   entrypoint = ["./tmp/main"]
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
+  exclude_dir = ["assets", "node_modules", "tmp", "vendor", "testdata"]
   exclude_file = []
   exclude_regex = ["_test.go"]
   exclude_unchanged = false
