@@ -7,6 +7,7 @@ import { Contest, Platform } from "../../lib/types";
 import { fetchContests } from "../../lib/api";
 import { PLATFORM_GUIDES } from "../../lib/platformGuides";
 import PlatformIcon from "../../components/PlatformIcon";
+import UnableToFetch from "../../components/UnableToFetch";
 import { cn } from "@/lib/utils";
 
 export default function PlatformsPage() {
@@ -22,7 +23,7 @@ export default function PlatformsPage() {
       try {
         setContests(await fetchContests());
       } catch {
-        setError("Failed to load contests");
+        setError("Unable to fetch the data");
       } finally {
         setLoading(false);
       }
@@ -110,7 +111,7 @@ export default function PlatformsPage() {
             <Loader2 className="h-6 w-6 animate-spin text-blue-500" />
           </div>
         ) : error ? (
-          <p className="text-red-500">{error}</p>
+          <UnableToFetch />
         ) : listed.length === 0 ? (
           <p className="rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-500 dark:border-zinc-700 dark:text-zinc-400">
             No upcoming contests are listed for {guide.label} right now.

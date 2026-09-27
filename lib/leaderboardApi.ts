@@ -18,7 +18,7 @@ export async function fetchLeaderboard(platform: Platform): Promise<LeaderboardE
     { cache: "no-store" }
   );
   if (!response.ok) {
-    throw new Error("Failed to fetch leaderboard");
+    throw new Error("Unable to fetch the data");
   }
 
   const data: LeaderboardEntry[] = await response.json();

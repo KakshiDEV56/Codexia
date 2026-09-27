@@ -26,7 +26,7 @@ export function useContests() {
         const data = await fetchContests();
         setContests(data);
       } catch {
-        setError("Failed to fetch contests");
+        setError("Unable to fetch the data");
       } finally {
         setLoading(false);
       }
@@ -51,7 +51,7 @@ export function useContests() {
           const data = await fetchContests();
           setContests(data);
         } catch {
-          setError("Failed to fetch contests");
+          setError("Unable to fetch the data");
         } finally {
           setLoading(false);
         }

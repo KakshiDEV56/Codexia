@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Platform } from "../../lib/types";
 import { LeaderboardEntry, fetchLeaderboard } from "../../lib/leaderboardApi";
 import { Search } from "lucide-react";
+import UnableToFetch from "../../components/UnableToFetch";
 import { cn } from "@/lib/utils";
 
 const PLATFORMS: { id: Platform; label: string }[] = [
@@ -31,7 +32,7 @@ export default function LeaderboardPage() {
         setData(res);
       } catch {
         setData([]);
-        setError("Failed to load the leaderboard");
+        setError("Unable to fetch the data");
       } finally {
         setLoading(false);
       }
@@ -86,6 +87,11 @@ export default function LeaderboardPage() {
         </div>
       </div>
 
+      {error ? (
+        <div className="mt-8">
+          <UnableToFetch />
+        </div>
+      ) : (
       <div className="mt-6 overflow-x-auto">
         <table className="w-full min-w-[560px] border-separate border-spacing-0 overflow-hidden rounded-xl border border-gray-200 bg-white text-left dark:rounded-none dark:border-0 dark:bg-transparent">
           <thead>
@@ -104,12 +110,6 @@ export default function LeaderboardPage() {
                   <td className="border-t border-gray-200 px-3 py-4 dark:border-white/[0.06]"><div className="ml-auto h-4 w-12 animate-pulse rounded bg-gray-100 dark:bg-white/5" /></td>
                 </tr>
               ))
-            ) : error ? (
-              <tr>
-                <td colSpan={3} className="px-3 py-16 text-center text-sm text-red-500 dark:text-red-400">
-                  {error}
-                </td>
-              </tr>
             ) : filteredData.length > 0 ? (
               filteredData.map((entry) => (
                 <tr key={entry.handle} className="group hover:bg-gray-50 dark:hover:bg-white/[0.035]">
@@ -143,6 +143,7 @@ export default function LeaderboardPage() {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 }

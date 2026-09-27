@@ -6,6 +6,7 @@ import Filters from "../../components/Filters";
 import ViewToggle from "../../components/ViewToggle";
 import ContestTable from "../../components/ContestTable";
 import TimelineView from "../../components/TimelineView";
+import UnableToFetch from "../../components/UnableToFetch";
 import { Loader2 } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -55,9 +56,7 @@ function ContestsPageContent() {
             <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
           </div>
         ) : error ? (
-          <div className="flex h-64 items-center justify-center text-red-500">
-            {error}
-          </div>
+          <UnableToFetch />
         ) : (
           viewMode === "table" ? (
             <ContestTable data={contests} />
