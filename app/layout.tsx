@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 const geistSans = Geist({
@@ -36,7 +37,7 @@ export default function RootLayout({
     <footer className="border-t border-gray-200 dark:border-zinc-800 py-8 text-center text-sm text-gray-500 dark:text-zinc-400">
              <p>© 2026 Codexia Labs. All rights reserved.</p>
              <div className="flex justify-center gap-6 mt-4">
-         <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">Changelog</a>
+         <Link href="/changelog" className="hover:text-gray-900 dark:hover:text-zinc-100">Changelog</Link>
          <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">Documentation</a>
          <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">Status</a>
          <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">API</a>

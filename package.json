@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:backend": "air -c backend/.air.toml",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

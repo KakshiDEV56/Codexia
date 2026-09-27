@@ -5,6 +5,10 @@ import "time"
 const (
 	PlatformLeetCode   = "leetcode"
 	PlatformCodeforces = "codeforces"
+	PlatformCodeChef   = "codechef"
+	PlatformAtCoder    = "atcoder"
+	PlatformGFG        = "gfg"
+	PlatformHackerRank = "hackerrank"
 )
 
 const (

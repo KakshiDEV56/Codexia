@@ -2,9 +2,9 @@ package crawler
 
 import "github.com/KakshiDEV56/codexia-backend/internal/source"
 
-// Crawler collects contests from a platform that does not publish a stable API.
-// CodeChef, AtCoder, GeeksforGeeks, and HackerRank will implement this and be
-// registered beside the LeetCode and Codeforces pollers.
+// Crawler collects contests or rankings from a platform that does not publish a stable API.
+// AtCoder contests and the AtCoder ranking page are crawled. CodeChef, HackerRank, and
+// GeeksforGeeks contests come from their JSON endpoints instead.
 type Crawler interface {
 	source.Source
 }

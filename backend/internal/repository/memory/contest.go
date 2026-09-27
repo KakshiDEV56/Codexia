@@ -7,16 +7,20 @@ import (
 	"github.com/KakshiDEV56/codexia-backend/internal/domain"
 )
 
-// Repository keeps contests in process memory. It is the store used when
-// DATABASE_URL is unset.
+// Repository keeps contests and leaderboards in process memory. It is the store
+// used when DATABASE_URL is unset.
 type Repository struct {
-	mu       sync.RWMutex
-	contests map[string]domain.Contest
+	mu        sync.RWMutex
+	contests  map[string]domain.Contest
+	standings map[string][]domain.Standing
 }
 
-// New returns an empty in-memory contest store.
+// New returns an empty in-memory store.
 func New() *Repository {
-	return &Repository{contests: make(map[string]domain.Contest)}
+	return &Repository{
+		contests:  make(map[string]domain.Contest),
+		standings: make(map[string][]domain.Standing),
+	}
 }
 
 func key(c domain.Contest) string {
@@ -42,5 +46,24 @@ func (r *Repository) List(_ context.Context) ([]domain.Contest, error) {
 	for _, contest := range r.contests {
 		out = append(out, contest)
 	}
+	return out, nil
+}
+
+// ReplaceStandings swaps the saved ranking for one platform.
+func (r *Repository) ReplaceStandings(_ context.Context, platform string, standings []domain.Standing) error {
+	copied := make([]domain.Standing, len(standings))
+	copy(copied, standings)
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.standings[platform] = copied
+	return nil
+}
+
+// ListStandings returns the saved ranking for one platform.
+func (r *Repository) ListStandings(_ context.Context, platform string) ([]domain.Standing, error) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	out := make([]domain.Standing, len(r.standings[platform]))
+	copy(out, r.standings[platform])
 	return out, nil
 }

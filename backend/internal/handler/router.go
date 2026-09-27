@@ -8,8 +8,8 @@ import (
 	"github.com/KakshiDEV56/codexia-backend/internal/service"
 )
 
-// NewRouter exposes health and contest routes.
-func NewRouter(contests *service.ContestService) *gin.Engine {
+// NewRouter exposes health, contest, and leaderboard routes.
+func NewRouter(contests *service.ContestService, leaderboard *service.LeaderboardService) *gin.Engine {
 	router := gin.New()
 	router.Use(gin.Logger(), gin.Recovery(), cors())
 
@@ -19,6 +19,9 @@ func NewRouter(contests *service.ContestService) *gin.Engine {
 
 	contestHandler := NewContestHandler(contests)
 	router.GET("/api/contests", contestHandler.List)
+
+	leaderboardHandler := NewLeaderboardHandler(leaderboard)
+	router.GET("/api/leaderboard", leaderboardHandler.List)
 	return router
 }
 

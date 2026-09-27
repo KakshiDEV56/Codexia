@@ -1,0 +1,1 @@
+-- The API creates its tables on startup.

@@ -9,19 +9,35 @@ import (
 )
 
 const (
-	defaultPort          = "8080"
-	defaultPollInterval  = 15 * time.Minute
-	defaultLeetCodeURL   = "https://leetcode.com/graphql"
-	defaultCodeforcesURL = "https://codeforces.com/api/contest.list?gym=false"
+	defaultPort               = "8080"
+	defaultPollInterval       = 15 * time.Minute
+	defaultLeetCodeURL        = "https://leetcode.com/graphql"
+	defaultCodeforcesURL      = "https://codeforces.com/api/contest.list?gym=false"
+	defaultCodeforcesRates    = "https://codeforces.com/api/user.ratedList?activeOnly=true"
+	defaultCodeChefContests   = "https://www.codechef.com/api/list/contests/all?sort_by=START&sorting_order=asc&offset=0&mode=all"
+	defaultCodeChefRatings    = "https://www.codechef.com/api/ratings/all"
+	defaultHackerRankUpcoming = "https://www.hackerrank.com/rest/contests/upcoming"
+	defaultHackerRankArchived = "https://www.hackerrank.com/rest/contests/archived"
+	defaultGFGEvents          = "https://practiceapi.geeksforgeeks.org/api/vr/events/"
+	defaultAtCoderContests    = "https://atcoder.jp/contests/"
+	defaultAtCoderRanking     = "https://atcoder.jp/ranking"
 )
 
 // Config is process configuration loaded from the environment.
 type Config struct {
-	Port          string
-	DatabaseURL   string
-	PollInterval  time.Duration
-	LeetCodeURL   string
-	CodeforcesURL string
+	Port                  string
+	DatabaseURL           string
+	PollInterval          time.Duration
+	LeetCodeURL           string
+	CodeforcesURL         string
+	CodeforcesRatingsURL  string
+	CodeChefContestsURL   string
+	CodeChefRatingsURL    string
+	HackerRankUpcomingURL string
+	HackerRankArchivedURL string
+	GFGEventsURL          string
+	AtCoderContestsURL    string
+	AtCoderRankingURL     string
 }
 
 // Load reads optional .env values and fills defaults for local development.
@@ -31,11 +47,19 @@ func Load() Config {
 	}
 
 	cfg := Config{
-		Port:          envOr("PORT", defaultPort),
-		DatabaseURL:   os.Getenv("DATABASE_URL"),
-		PollInterval:  defaultPollInterval,
-		LeetCodeURL:   envOr("LEETCODE_GRAPHQL_URL", defaultLeetCodeURL),
-		CodeforcesURL: envOr("CODEFORCES_API_URL", defaultCodeforcesURL),
+		Port:                  envOr("PORT", defaultPort),
+		DatabaseURL:           os.Getenv("DATABASE_URL"),
+		PollInterval:          defaultPollInterval,
+		LeetCodeURL:           envOr("LEETCODE_GRAPHQL_URL", defaultLeetCodeURL),
+		CodeforcesURL:         envOr("CODEFORCES_API_URL", defaultCodeforcesURL),
+		CodeforcesRatingsURL:  envOr("CODEFORCES_RATINGS_URL", defaultCodeforcesRates),
+		CodeChefContestsURL:   envOr("CODECHEF_CONTESTS_URL", defaultCodeChefContests),
+		CodeChefRatingsURL:    envOr("CODECHEF_RATINGS_URL", defaultCodeChefRatings),
+		HackerRankUpcomingURL: envOr("HACKERRANK_UPCOMING_URL", defaultHackerRankUpcoming),
+		HackerRankArchivedURL: envOr("HACKERRANK_ARCHIVED_URL", defaultHackerRankArchived),
+		GFGEventsURL:          envOr("GFG_EVENTS_URL", defaultGFGEvents),
+		AtCoderContestsURL:    envOr("ATCODER_CONTESTS_URL", defaultAtCoderContests),
+		AtCoderRankingURL:     envOr("ATCODER_RANKING_URL", defaultAtCoderRanking),
 	}
 
 	if raw := os.Getenv("POLL_INTERVAL"); raw != "" {
