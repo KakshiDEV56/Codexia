@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import Navbar from "../components/Navbar";
+import SiteChrome from "../components/SiteChrome";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,22 +26,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased dark`}
     >
   <body className="min-h-full flex flex-col bg-gray-50 text-gray-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans">
-        <Navbar />
-        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {children}
-        </main>
-    <footer className="border-t border-gray-200 dark:border-zinc-800 py-8 text-center text-sm text-gray-500 dark:text-zinc-400">
-             <p>© 2026 Codexia Labs. All rights reserved.</p>
-             <div className="flex justify-center gap-6 mt-4">
-         <Link href="/changelog" className="hover:text-gray-900 dark:hover:text-zinc-100">Changelog</Link>
-         <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">Documentation</a>
-         <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">Status</a>
-         <a href="#" className="hover:text-gray-900 dark:hover:text-zinc-100">API</a>
-             </div>
-        </footer>
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -34,6 +34,71 @@
   scrollbar-width: none;
 }
 
+.dot-field {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.55) 1.2px, transparent 1.3px);
+  background-size: 18px 18px;
+}
+
+.dot-field-soft {
+  background-image: radial-gradient(circle, rgba(59, 130, 246, 0.35) 1.2px, transparent 1.3px);
+  background-size: 16px 16px;
+}
+
+.float-chip {
+  animation: float-chip 4.5s ease-in-out infinite;
+}
+
+.float-chip-delay {
+  animation: float-chip 5.2s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes float-chip {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.saas-section {
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.saas-section:hover {
+  border-color: #dbeafe;
+  box-shadow: 0 22px 50px rgba(37, 99, 235, 0.1);
+}
+
+.saas-card {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.saas-card:hover {
+  transform: translateY(-4px);
+  border-color: #bfdbfe;
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.14);
+}
+
+.saas-row {
+  transition: background-color 160ms ease;
+}
+
+.saas-row:hover {
+  background-color: #f3f7ff;
+}
+
+.saas-press {
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.saas-press:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);

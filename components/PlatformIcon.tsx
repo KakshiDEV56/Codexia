@@ -37,9 +37,9 @@ export default function PlatformIcon({ platform, className = "w-6 h-6" }: Props)
       );
     case "atcoder":
       return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={`${className} text-gray-900 dark:text-gray-100`} xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor" opacity="0.2" />
-          <path d="M6 18l6-11 6 11H6z" fill="currentColor"/>
+        <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="11" fill="#ffffff" stroke="#111111" strokeWidth="1.25" />
+          <path d="M6.2 17.2 12 6.4l5.8 10.8H6.2z" fill="#111111" />
         </svg>
       );
     case "gfg":
