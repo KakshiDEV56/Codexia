@@ -63,6 +63,24 @@
   }
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .saas-section {
   transition: box-shadow 200ms ease, border-color 200ms ease;
 }
@@ -80,6 +98,14 @@
   transform: translateY(-4px);
   border-color: #bfdbfe;
   box-shadow: 0 18px 40px rgba(37, 99, 235, 0.14);
+}
+
+.widget-shift {
+  transition: transform 200ms ease;
+}
+
+.saas-card:hover .widget-shift {
+  transform: translateY(-10px);
 }
 
 .saas-row {
