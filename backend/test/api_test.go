@@ -22,13 +22,13 @@ func newTestRouter(t *testing.T) *gin.Engine {
 	now := time.Now().UTC()
 	err := repo.UpsertMany(context.Background(), []domain.Contest{
 		{
-			Platform:  domain.PlatformCodeforces,
+			Platform:   domain.PlatformCodeforces,
 			PlatformID: "2001",
-			Title:     "Upcoming round",
-			URL:       "https://codeforces.com/contest/2001",
-			StartTime: now.Add(time.Hour),
+			Title:      "Upcoming round",
+			URL:        "https://codeforces.com/contest/2001",
+			StartTime:  now.Add(time.Hour),
 			EndTime:   now.Add(2 * time.Hour),
-			Duration:  time.Hour,
+			Duration:   time.Hour,
 		},
 	})
 	if err != nil {
@@ -37,9 +37,9 @@ func newTestRouter(t *testing.T) *gin.Engine {
 	if err := repo.ReplaceStandings(context.Background(), domain.PlatformCodeforces, []domain.Standing{
 		{
 			Platform:  domain.PlatformCodeforces,
-			Handle:    "tourist",
-			Rank:      1,
-			Rating:    3800,
+			Handle:     "tourist",
+			Rank:       1,
+			Rating:     3800,
 			ProfileURL: "https://codeforces.com/profile/tourist",
 		},
 	}); err != nil {
