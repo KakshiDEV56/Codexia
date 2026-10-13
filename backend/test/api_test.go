@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/KakshiDEV56/codexia-backend/internal/domain"
 	"github.com/KakshiDEV56/codexia-backend/internal/handler"
 	"github.com/KakshiDEV56/codexia-backend/internal/repository/memory"
 	"github.com/KakshiDEV56/codexia-backend/internal/service"
+	"github.com/gin-gonic/gin"
 )
 
 func newTestRouter(t *testing.T) *gin.Engine {
@@ -27,7 +27,7 @@ func newTestRouter(t *testing.T) *gin.Engine {
 			Title:      "Upcoming round",
 			URL:        "https://codeforces.com/contest/2001",
 			StartTime:  now.Add(time.Hour),
-			EndTime:   now.Add(2 * time.Hour),
+			EndTime:    now.Add(2 * time.Hour),
 			Duration:   time.Hour,
 		},
 	})
@@ -36,7 +36,7 @@ func newTestRouter(t *testing.T) *gin.Engine {
 	}
 	if err := repo.ReplaceStandings(context.Background(), domain.PlatformCodeforces, []domain.Standing{
 		{
-			Platform:  domain.PlatformCodeforces,
+			Platform:   domain.PlatformCodeforces,
 			Handle:     "tourist",
 			Rank:       1,
 			Rating:     3800,
