@@ -12,12 +12,12 @@ import (
 func TestFetchFiltersInvalidAndExpiredContests(t *testing.T) {
 	now := time.Date(2026, 10, 1, 12, 0, 0, 0, time.UTC)
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		_, _ = w.Write([]byte("{\"status\":\"success\",\"present_contests\":[\" +
-			"{\"contest_code\":\"LIVE\",\"contest_name\":\"Live contest\",\"contest_start_date_iso\":\"2026-10-01T11:00:00Z\",\"contest_end_date_iso\":\"2026-10-01T13:00:00Z\"}," +
-			"{\"contest_code\":\"BAD\",\"contest_name\":\"Invalid times\",\"contest_start_date_iso\":\"not-a-time\",\"contest_end_date_iso\":\"2026-10-01T13:00:00Z\"}," +
-			"{\"contest_code\":\"REVERSED\",\"contest_name\":\"Reversed\",\"contest_start_date_iso\":\"2026-10-01T13:00:00Z\",\"contest_end_date_iso\":\"2026-10-01T12:00:00Z\"}]," +
-			"\"future_contests\":[{\"contest_code\":\"NEXT\",\"contest_name\":\"Next\",\"contest_start_date_iso\":\"2026-10-02T10:00:00Z\",\"contest_end_date_iso\":\"2026-10-02T12:00:00Z\"}]," +
-			"\"past_contests\":[{\"contest_code\":\"OLD\",\"contest_name\":\"Old\",\"contest_start_date_iso\":\"2026-08-01T10:00:00Z\",\"contest_end_date_iso\":\"2026-08-01T12:00:00Z\"}]}"))
+		_, _ = w.Write([]byte(`{"status":"success","present_contests":[
+			{"contest_code":"LIVE","contest_name":"Live contest","contest_start_date_iso":"2026-10-01T11:00:00Z","contest_end_date_iso":"2026-10-01T13:00:00Z"},
+			{"contest_code":"BAD","contest_name":"Invalid times","contest_start_date_iso":"not-a-time","contest_end_date_iso":"2026-10-01T13:00:00Z"},
+			{"contest_code":"REVERSED","contest_name":"Reversed","contest_start_date_iso":"2026-10-01T13:00:00Z","contest_end_date_iso":"2026-10-01T12:00:00Z"}
+		],"future_contests":[{"contest_code":"NEXT","contest_name":"Next","contest_start_date_iso":"2026-10-02T10:00:00Z","contest_end_date_iso":"2026-10-02T12:00:00Z"}],
+		"past_contests":[{"contest_code":"OLD","contest_name":"Old","contest_start_date_iso":"2026-08-01T10:00:00Z","contest_end_date_iso":"2026-08-01T12:00:00Z"}]}`))
 	}))
 	defer server.Close()
 
@@ -47,7 +47,7 @@ func TestFetchReturnsHTTPAndDecodeErrors(t *testing.T) {
 	}{
 		{"http error", http.StatusBadGateway, "bad gateway", "status 502"},
 		{"invalid json", http.StatusOK, "{", "decode codechef response"},
-		{"api error", http.StatusOK, "{\"status\":\"error\"}", "codechef api"},
+		{"api error", http.StatusOK, `{"status":"error"}`, "codechef api"},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
 			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
