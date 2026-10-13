@@ -10,7 +10,7 @@ func TestStatusBoundaries(t *testing.T) {
 	end := start.Add(time.Hour)
 	tests := []struct {
 		name string
-		now time.Time
+		now  time.Time
 		want string
 	}{
 		{"before start", start.Add(-time.Nanosecond), StatusUpcoming},
@@ -33,7 +33,7 @@ func TestKeptRetentionBoundary(t *testing.T) {
 	cutoff := now.Add(-RecentContestWindow)
 	tests := []struct {
 		name string
-		end time.Time
+		end  time.Time
 		want bool
 	}{
 		{"future", now.Add(time.Hour), true},
