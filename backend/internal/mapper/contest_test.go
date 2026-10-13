@@ -16,10 +16,10 @@ func TestToContestResponse(t *testing.T) {
 		Platform:   domain.PlatformCodeChef,
 		PlatformID: "START42",
 		Title:      "  Long Challenge  ",
-		URL:       "https://example.test/contest",
-		StartTime: start,
-		EndTime:   end,
-		Duration:  90 * time.Minute,
+		URL:        "https://example.test/contest",
+		StartTime:  start,
+		EndTime:    end,
+		Duration:   90 * time.Minute,
 	}, now)
 
 	if got.ID != "codechef-START42" || got.Platform != domain.PlatformCodeChef {
