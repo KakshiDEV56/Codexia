@@ -62,5 +62,5 @@ func TestContestServiceWrapsRepositoryErrors(t *testing.T) {
 func TestContestServiceSavePassesEmptyBatch(t *testing.T) {
 	repo := &contestRepoStub{}
 	if err := NewContestService(repo).Save(context.Background(), []domain.Contest{}); err != nil { t.Fatal(err) }
-	if repo.saved == nil || len(repo.saved) != 0 { t.Fatalf("saved batch = %#v", repo.saved) }
+	if len(repo.saved) != 0 { t.Fatalf("saved batch = %#v", repo.saved) }
 }
