@@ -13,9 +13,9 @@ func TestToContestResponse(t *testing.T) {
 	end := start.Add(90 * time.Minute)
 	now := start.Add(-time.Second)
 	got := ToContestResponse(domain.Contest{
-		Platform:  domain.PlatformCodeChef,
+		Platform:   domain.PlatformCodeChef,
 		PlatformID: "START42",
-		Title:     "  Long Challenge  ",
+		Title:      "  Long Challenge  ",
 		URL:       "https://example.test/contest",
 		StartTime: start,
 		EndTime:   end,
