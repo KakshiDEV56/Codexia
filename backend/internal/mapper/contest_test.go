@@ -10,12 +10,16 @@ import (
 func TestToContestResponse(t *testing.T) {
 	loc := time.FixedZone("UTC+5:30", 5*60*60+30*60)
 	start := time.Date(2026, 10, 2, 9, 0, 0, 0, loc)
-	end := start.Add(90*time.Minute)
+	end := start.Add(90 * time.Minute)
 	now := start.Add(-time.Second)
 	got := ToContestResponse(domain.Contest{
-		Platform: domain.PlatformCodeChef, PlatformID: "START42",
-		Title: "  Long Challenge  ", URL: "https://example.test/contest",
-		StartTime: start, EndTime: end, Duration: 90*time.Minute,
+		Platform:  domain.PlatformCodeChef,
+		PlatformID: "START42",
+		Title:     "  Long Challenge  ",
+		URL:       "https://example.test/contest",
+		StartTime: start,
+		EndTime:   end,
+		Duration:  90 * time.Minute,
 	}, now)
 
 	if got.ID != "codechef-START42" || got.Platform != domain.PlatformCodeChef {
@@ -34,7 +38,9 @@ func TestToContestResponse(t *testing.T) {
 
 func TestToContestResponseRoundsDuration(t *testing.T) {
 	now := time.Now()
-	got := ToContestResponse(domain.Contest{Duration: 1*time.Hour + 14*time.Minute + 24*time.Second}, now)
+	got := ToContestResponse(domain.Contest{
+		Duration: time.Hour + 14*time.Minute + 24*time.Second,
+	}, now)
 	if got.Duration != 1.24 {
 		t.Fatalf("duration = %v, want 1.24", got.Duration)
 	}
